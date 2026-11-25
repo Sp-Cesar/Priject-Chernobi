@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chernóbil 86: Turno de 90 Segundos | César Sachun Pozo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="crt-shell">
+    <header class="topbar metal-panel">
+      <div class="topbar-brand">
+        <img class="pixel-icon brand-icon" src="assets/sprites/ui/rad_icon.png" width="24" height="24" alt="">
+        <span class="brand-title">CHERNÓBIL 86: TURNO DE 90s</span>
+        <span class="author-chip">AUTOR: CÉSAR SACHUN POZO</span>
+      </div>
+      <div class="topbar-controls">
+        <button id="pause-btn" type="button" class="btn-metal" hidden>
+          <span>PAUSA [P]</span>
+        </button>
+        <button id="mute-btn" type="button" class="btn-metal" aria-pressed="false">
+          <img id="mute-icon" class="pixel-icon" src="assets/sprites/ui/audio_on.png" width="16" height="16" alt="">
+          <span id="mute-label">AUDIO: ON</span>
+        </button>
+        <button id="kb-toggle-btn" type="button" class="btn-metal" aria-expanded="false" aria-controls="kb-backup-panel">
+          <img class="pixel-icon" src="assets/sprites/ui/keyboard.png" width="16" height="16" alt="">
+          <span>TECLADO</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="app-main">
+      <!-- PORTADA -->
+      <section id="screen-cover" class="cover-layout metal-panel" aria-labelledby="cover-heading">
+        <div class="cover-art-panel">
+          <figure class="cover-figure">
+            <img
+              id="cover-img"
+              src="assets/spritesheets/portada_chernobyl86.png"
+              alt="Ilustración pixel art del Reactor 4 de Chernóbil con dos liquidadores preparados para entrar en turno"
+              width="640"
+              height="360"
+            >
+            <figcaption class="cover-caption">
+              <span class="caption-tag">SECTOR 4 • ABRIL–MAYO 1986</span>
+              <span id="cover-mode-caption">1 O 2 JUGADORES • VOZ</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="cover-info-panel crt-screen">
+          <p class="kicker">TERMINAL DE EMERGENCIA — UNIDAD 4</p>
+          <h1 id="cover-heading">CHERNÓBIL 86:<br>TURNO DE 90 SEGUNDOS</h1>
+          <p class="cover-credit">DESARROLLADO POR: <strong>CÉSAR SACHUN POZO</strong></p>
+          <p class="cover-desc">
+            Los robots colapsaron por la radiación extrema. Contén el fuego del techo y abre las válvulas del subsuelo usando <strong>comandos de voz</strong>.
+          </p>
+
+          <div class="mode-selector" role="group" aria-label="Modo de juego">
+            <button id="mode-1p-btn" type="button" class="mode-btn" aria-pressed="true">
+              1 JUGADOR
+            </button>
+            <button id="mode-2p-btn" type="button" class="mode-btn" aria-pressed="false">
+              2 JUGADORES (RELEVOS)
+            </button>
+          </div>
+
+          <div id="players-form" class="players-form" data-mode="1p">
+            <div class="field-group p1">
+              <label for="p1-name">J1 • TRAJE AMARILLO</label>
+              <div class="input-with-portrait">
+                <img class="pixel-icon portrait-sm" src="assets/sprites/ui/portrait_p1.png" width="32" height="32" alt="">
+                <input id="p1-name" type="text" maxlength="16" value="Liquidador 1" autocomplete="off">
+              </div>
+            </div>
+            <div id="p2-field-group" class="field-group p2" hidden>
+              <label for="p2-name">J2 • TRAJE AZUL</label>
+              <div class="input-with-portrait">
+                <img class="pixel-icon portrait-sm" src="assets/sprites/ui/portrait_p2.png" width="32" height="32" alt="">
+                <input id="p2-name" type="text" maxlength="16" value="Liquidador 2" autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="mic-check-box crt-inset">
+            <div class="mic-check-header">
+              <button id="cover-mic-btn" type="button" class="btn-phosphor" aria-pressed="false">
+                <img id="cover-mic-icon" class="pixel-icon" src="assets/sprites/ui/mic_off.png" width="16" height="16" alt="">
+                <span id="cover-mic-label">PROBAR MICRÓFONO</span>
+              </button>
+              <span id="cover-mic-status" class="mic-status-text" data-state="idle">
+                Calibra tu voz antes de entrar al reactor.
+              </span>
+            </div>
+            <div class="vu-meter pixel-bar" aria-hidden="true">
+              <div id="cover-vu-fill" class="vu-fill"></div>
+            </div>
+            <p class="transcript-line">
+              SEÑAL VOZ: <strong id="cover-transcript">Esperando comando...</strong>
+            </p>
+          </div>
+
+          <div class="cover-actions">
+            <button id="cover-start-btn" type="button" class="btn-amber">
+              [ ENTER ] INICIAR MISIÓN
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANTALLA DE JUEGO -->
+      <section id="screen-game" class="game-layout" aria-label="Área de juego" hidden>
+        <!-- HUD SUPERIOR DE 3 PLACAS OXIDADAS -->
+        <section class="hud-bar" aria-label="Telemetría de la misión">
+          <div id="hud-p1-card" class="player-card metal-panel p1" data-active="true">
+            <img class="pixel-icon hud-portrait" src="assets/sprites/ui/portrait_p1.png" width="42" height="42" alt="">
+            <div class="player-card-info crt-inset">
+              <div class="player-card-head">
+                <span id="hud-p1-name" class="player-name">Liquidador 1</span>
+                <span id="hud-p1-score" class="player-score">000000</span>
+              </div>
+              <div class="player-state-row">
+                <span class="state-key">ESTADO:</span>
+                <span id="hud-p1-state" class="state-val" data-level="safe">ESTABLE</span>
+              </div>
+              <div class="rad-row">
+                <span class="rad-label">RADS</span>
+                <div class="rad-track pixel-bar"><div id="hud-p1-rad" class="rad-fill"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mission-center-card metal-panel">
+            <div class="crt-inset mission-center-inner">
+              <div class="mission-top-row">
+                <span id="hud-level-title" class="level-title">NIVEL 1: TECHO DEL REACTOR</span>
+                <div id="hud-lives" class="lives-display" aria-label="3 vidas restantes"></div>
+              </div>
+              <div class="mission-bottom-row">
+                <div class="progress-wrap">
+                  <span id="hud-progress-label" class="progress-label">0/8 FOCOS</span>
+                  <div class="progress-track pixel-bar"><div id="hud-progress-fill" class="progress-fill"></div></div>
+                </div>
+                <div class="shift-clock">
+                  <span id="hud-clock-label" class="shift-label">TIEMPO</span>
+                  <strong id="hud-shift-timer">00:00</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="hud-p2-card" class="player-card metal-panel p2" data-active="false">
+            <img class="pixel-icon hud-portrait" src="assets/sprites/ui/portrait_p2.png" width="42" height="42" alt="">
+            <div class="player-card-info crt-inset">
+              <div class="player-card-head">
+                <span id="hud-p2-name" class="player-name">Liquidador 2</span>
+                <span id="hud-p2-score" class="player-score">000000</span>
+              </div>
+              <div class="player-state-row">
+                <span class="state-key">ESTADO:</span>
+                <span id="hud-p2-state" class="state-val" data-level="safe">ESTABLE</span>
+              </div>
+              <div class="rad-row">
+                <span class="rad-label">RADS</span>
+                <div class="rad-track pixel-bar"><div id="hud-p2-rad" class="rad-fill"></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TABLERO Y TERMINAL TÁCTICA DERECHA -->
+        <div class="stage-grid">
+          <div class="canvas-stage metal-panel">
+            <canvas
+              id="game-canvas"
+              width="672"
+              height="480"
+              aria-label="Tablero táctico de Chernóbil 86"
+            ></canvas>
+          </div>
+
+          <aside class="voice-sidebar" aria-label="Radar de voz, misión y medidor Geiger">
+            <!-- MÓDULO 1: RADAR CRT DE VOZ -->
+            <div class="sidebar-card metal-panel voice-telemetry">
+              <div class="crt-inset module-screen">
+                <div class="voice-header">
+                  <span id="voice-status-pill" class="status-pill" data-state="idle">SEÑAL OFF</span>
+                  <button id="game-mic-btn" type="button" class="btn-mini-phosphor" aria-pressed="false">
+                    <img id="game-mic-icon" class="pixel-icon" src="assets/sprites/ui/mic_off.png" width="16" height="16" alt="">
+                    <span id="game-mic-label">MIC: OFF</span>
+                  </button>
+                </div>
+                <canvas id="voice-radar" width="290" height="52" aria-hidden="true"></canvas>
+                <div class="vu-meter pixel-bar" aria-hidden="true">
+                  <div id="voice-vu-fill" class="vu-fill"></div>
+                </div>
+                <div class="voice-meta-row">
+                  <span id="voice-boost-indicator" class="boost-badge" data-boost="false">POTENCIA: NORMAL</span>
+                  <span id="voice-last-cmd" class="cmd-badge" data-active="false">—</span>
+                </div>
+                <p class="transcript-box">
+                  <span class="transcript-label">VOZ:</span>
+                  <strong id="voice-transcript">Esperando comando...</strong>
+                </p>
+              </div>
+            </div>
+
+            <!-- MÓDULO 2: MISIÓN ACTIVA Y COMANDOS -->
+            <div class="sidebar-card metal-panel commands-card">
+              <div class="crt-inset module-screen">
+                <div class="module-head">
+                  <img class="pixel-icon" src="assets/sprites/ui/warning_tri.png" width="16" height="16" alt="">
+                  <h2>MISIÓN ACTIVA: COMANDOS</h2>
+                </div>
+                <ul class="commands-list">
+                  <li><kbd>ARRIBA / ABAJO / IZQ / DER</kbd> <span>Desplazar sector</span></li>
+                  <li><kbd>AGUA</kbd> <span>Extinguir fuego/grafito (fuerte x2)</span></li>
+                  <li><kbd>ESCUDO</kbd> <span>Bloquear pulso de radiación</span></li>
+                  <li id="cmd-item-valve"><kbd>VÁLVULA / ABRIR</kbd> <span>Drenar tanques (N2)</span></li>
+                  <li id="cmd-item-relay"><kbd>RELEVO</kbd> <span>Rotar turno y descontaminar</span></li>
+                  <li><kbd>PAUSA</kbd> <span>Pausar misión (o tecla P)</span></li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- MÓDULO 3: MEDIDOR GEIGER ANALÓGICO -->
+            <div class="sidebar-card metal-panel geiger-card">
+              <div class="geiger-row">
+                <div class="geiger-dial" aria-hidden="true">
+                  <img class="pixel-icon geiger-plate" src="assets/sprites/ui/geiger_plate.png" width="96" height="64" alt="">
+                  <div id="geiger-needle" class="geiger-needle"></div>
+                </div>
+                <div class="crt-inset geiger-readout">
+                  <div class="geiger-top">
+                    <img class="pixel-icon" src="assets/sprites/ui/rad_icon.png" width="16" height="16" alt="">
+                    <span class="geiger-label">DOSÍMETRO</span>
+                  </div>
+                  <strong id="hud-msv" class="msv-value">14 mSv/h</strong>
+                  <span id="hud-danger" class="danger-tag" data-level="safe">PELIGRO: MODERADO</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- RESPALDO EMERGENCIA TECLADO -->
+            <div id="kb-backup-panel" class="sidebar-card metal-panel kb-backup" hidden>
+              <div class="crt-inset module-screen">
+                <h2>RESPALDO EMERGENCIA</h2>
+                <p class="kb-hint">WASD/Flechas • Espacio(Agua) • E(Escudo) • V(Válvula) • R(Relevo)</p>
+                <div class="backup-pad">
+                  <button type="button" class="btn-pad" data-cmd="UP" aria-label="Mover arriba">
+                    <img class="pixel-icon" src="assets/sprites/ui/arrow_up.png" width="16" height="16" alt="">
+                  </button>
+                  <button type="button" class="btn-pad" data-cmd="LEFT" aria-label="Mover izquierda">
+                    <img class="pixel-icon" src="assets/sprites/ui/arrow_left.png" width="16" height="16" alt="">
+                  </button>
+                  <button type="button" class="btn-pad" data-cmd="DOWN" aria-label="Mover abajo">
+                    <img class="pixel-icon" src="assets/sprites/ui/arrow_down.png" width="16" height="16" alt="">
+                  </button>
+                  <button type="button" class="btn-pad" data-cmd="RIGHT" aria-label="Mover derecha">
+                    <img class="pixel-icon" src="assets/sprites/ui/arrow_right.png" width="16" height="16" alt="">
+                  </button>
+                </div>
+                <div class="backup-actions">
+                  <button type="button" class="btn-pad-action" data-cmd="WATER">AGUA</button>
+                  <button type="button" class="btn-pad-action" data-cmd="SHIELD">ESCUDO</button>
+                  <button type="button" class="btn-pad-action" data-cmd="VALVE">VÁLVULA</button>
+                  <button id="btn-backup-relay" type="button" class="btn-pad-action" data-cmd="RELAY">RELEVO</button>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MODAL CINEMÁTICO CRT PARA BRIEFING, TRANSICIÓN, VICTORIA Y CONEXIÓN PERDIDA -->
+  <dialog id="mission-dialog" class="metal-panel" aria-labelledby="dialog-title" data-variant="briefing">
+    <div class="dialog-content crt-screen">
+      <div class="dialog-header-row">
+        <img id="dialog-icon" class="dialog-pixel-icon" src="assets/sprites/ui/rad_icon.png" width="44" height="44" alt="" hidden>
+        <div class="dialog-title-group">
+          <p id="dialog-kicker" class="kicker"></p>
+          <h2 id="dialog-title"></h2>
+        </div>
+      </div>
+
+      <div id="dialog-hero-grid" class="dialog-hero-grid" hidden>
+        <img id="dialog-banner" class="dialog-banner" src="assets/spritesheets/victory_chernobyl.png" width="320" height="140" alt="" hidden>
+        <div id="dialog-telemetry" class="dialog-telemetry" hidden></div>
+      </div>
+
+      <p id="dialog-body" class="dialog-body"></p>
+      <div id="dialog-stats" class="dialog-stats"></div>
+      <ul id="dialog-facts" class="dialog-facts" hidden></ul>
+
+      <div class="dialog-actions">
+        <button id="dialog-primary-btn" type="button" class="btn-amber"></button>
+        <button id="dialog-secondary-btn" type="button" class="btn-metal" hidden></button>
+        <button id="dialog-tertiary-btn" type="button" class="btn-metal" hidden></button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="live-announcer" class="visually-hidden" aria-live="polite"></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

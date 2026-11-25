@@ -1,0 +1,345 @@
+{
+  "project": "Chernobil 86: Turno de 90 Segundos",
+  "author": "Cesar Sachun Pozo",
+  "pixelSize": 32,
+  "palette": {
+    "outline": "#0d1117",
+    "p1Suit": "#f2c94c",
+    "p1Shadow": "#b8891d",
+    "p1Hi": "#ffe58f",
+    "p2Suit": "#38bdf8",
+    "p2Shadow": "#1477a8",
+    "p2Hi": "#9ee6ff",
+    "leadVest": "#4a525a",
+    "leadDark": "#2c3238",
+    "leadHi": "#74808c",
+    "maskDark": "#1b2026",
+    "visor": "#a6f4ff",
+    "visorDim": "#3d8fa3",
+    "boot": "#181c20",
+    "hose": "#283640",
+    "water": "#38d9ff",
+    "waterHi": "#c8f8ff",
+    "shieldGlow": "#22ff99",
+    "shieldDeep": "#0c8f62",
+    "fireOuter": "#ff5500",
+    "fireMid": "#ff9a1f",
+    "fireCore": "#ffdd55",
+    "fireWhite": "#fff5c0",
+    "graphiteBase": "#232830",
+    "graphiteEdge": "#39414d",
+    "cherenkov": "#22ff99",
+    "cherenkovBright": "#a4ffdc",
+    "cherenkovCyan": "#00e5ff",
+    "valveRed": "#c83226",
+    "valveRedHi": "#ff604d",
+    "valveGreen": "#22ff99",
+    "valveGreenDark": "#118f58",
+    "steel": "#8c96a4",
+    "steelDark": "#515966",
+    "concrete": "#4a525a",
+    "concreteDark": "#353b42",
+    "concreteLight": "#606a75",
+    "hazardYellow": "#e0b228",
+    "hazardBlack": "#181b20",
+    "tunnelFloor": "#242c35",
+    "tunnelDark": "#171d24",
+    "tunnelMoist": "#2e4152",
+    "waterTile1": "#14445e",
+    "waterTile2": "#1b5f80",
+    "rust": "#a83226"
+  },
+  "assets": {
+    "liquidador_p1": {
+      "sheet": "assets/spritesheets/liquidador_p1_sheet.png",
+      "pyxel": "assets/pixeledit/liquidador_p1.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "idle_1",
+          "file": "assets/sprites/p1/idle_1.png"
+        },
+        {
+          "index": 1,
+          "name": "idle_2",
+          "file": "assets/sprites/p1/idle_2.png"
+        },
+        {
+          "index": 2,
+          "name": "walk_1",
+          "file": "assets/sprites/p1/walk_1.png"
+        },
+        {
+          "index": 3,
+          "name": "action_water",
+          "file": "assets/sprites/p1/action_water.png"
+        },
+        {
+          "index": 4,
+          "name": "shield",
+          "file": "assets/sprites/p1/shield.png"
+        }
+      ]
+    },
+    "liquidador_p2": {
+      "sheet": "assets/spritesheets/liquidador_p2_sheet.png",
+      "pyxel": "assets/pixeledit/liquidador_p2.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "idle_1",
+          "file": "assets/sprites/p2/idle_1.png"
+        },
+        {
+          "index": 1,
+          "name": "idle_2",
+          "file": "assets/sprites/p2/idle_2.png"
+        },
+        {
+          "index": 2,
+          "name": "walk_1",
+          "file": "assets/sprites/p2/walk_1.png"
+        },
+        {
+          "index": 3,
+          "name": "action_water",
+          "file": "assets/sprites/p2/action_water.png"
+        },
+        {
+          "index": 4,
+          "name": "shield",
+          "file": "assets/sprites/p2/shield.png"
+        }
+      ]
+    },
+    "hazards": {
+      "sheet": "assets/spritesheets/hazards_sheet.png",
+      "pyxel": "assets/pixeledit/hazards_objects.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "fire_1",
+          "file": "assets/sprites/hazards/fire_1.png"
+        },
+        {
+          "index": 1,
+          "name": "fire_2",
+          "file": "assets/sprites/hazards/fire_2.png"
+        },
+        {
+          "index": 2,
+          "name": "graphite_1",
+          "file": "assets/sprites/hazards/graphite_1.png"
+        },
+        {
+          "index": 3,
+          "name": "graphite_2",
+          "file": "assets/sprites/hazards/graphite_2.png"
+        },
+        {
+          "index": 4,
+          "name": "valve_closed",
+          "file": "assets/sprites/hazards/valve_closed.png"
+        },
+        {
+          "index": 5,
+          "name": "valve_open",
+          "file": "assets/sprites/hazards/valve_open.png"
+        }
+      ]
+    },
+    "level1_tiles": {
+      "sheet": "assets/spritesheets/tiles_level1_sheet.png",
+      "pyxel": "assets/pixeledit/escenario_nivel1.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "roof_concrete",
+          "file": "assets/sprites/level1/roof_concrete.png"
+        },
+        {
+          "index": 1,
+          "name": "roof_cracked",
+          "file": "assets/sprites/level1/roof_cracked.png"
+        },
+        {
+          "index": 2,
+          "name": "roof_hazard",
+          "file": "assets/sprites/level1/roof_hazard.png"
+        },
+        {
+          "index": 3,
+          "name": "roof_grate",
+          "file": "assets/sprites/level1/roof_grate.png"
+        }
+      ]
+    },
+    "level2_tiles": {
+      "sheet": "assets/spritesheets/tiles_level2_sheet.png",
+      "pyxel": "assets/pixeledit/escenario_nivel2.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "tunnel_floor",
+          "file": "assets/sprites/level2/tunnel_floor.png"
+        },
+        {
+          "index": 1,
+          "name": "tunnel_pipe",
+          "file": "assets/sprites/level2/tunnel_pipe.png"
+        },
+        {
+          "index": 2,
+          "name": "tunnel_water_1",
+          "file": "assets/sprites/level2/tunnel_water_1.png"
+        },
+        {
+          "index": 3,
+          "name": "tunnel_water_2",
+          "file": "assets/sprites/level2/tunnel_water_2.png"
+        }
+      ]
+    },
+    "ui_8bit": {
+      "sheet": "assets/spritesheets/ui_8bit_sheet.png",
+      "pyxel": "assets/pixeledit/ui_8bit.pyxel",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frames": [
+        {
+          "index": 0,
+          "name": "heart_full",
+          "file": "assets/sprites/ui/heart_full.png"
+        },
+        {
+          "index": 1,
+          "name": "heart_empty",
+          "file": "assets/sprites/ui/heart_empty.png"
+        },
+        {
+          "index": 2,
+          "name": "rad_icon",
+          "file": "assets/sprites/ui/rad_icon.png"
+        },
+        {
+          "index": 3,
+          "name": "mic_on",
+          "file": "assets/sprites/ui/mic_on.png"
+        },
+        {
+          "index": 4,
+          "name": "mic_off",
+          "file": "assets/sprites/ui/mic_off.png"
+        },
+        {
+          "index": 5,
+          "name": "audio_on",
+          "file": "assets/sprites/ui/audio_on.png"
+        },
+        {
+          "index": 6,
+          "name": "audio_off",
+          "file": "assets/sprites/ui/audio_off.png"
+        },
+        {
+          "index": 7,
+          "name": "keyboard",
+          "file": "assets/sprites/ui/keyboard.png"
+        },
+        {
+          "index": 8,
+          "name": "trophy",
+          "file": "assets/sprites/ui/trophy.png"
+        },
+        {
+          "index": 9,
+          "name": "skull",
+          "file": "assets/sprites/ui/skull.png"
+        },
+        {
+          "index": 10,
+          "name": "arrow_up",
+          "file": "assets/sprites/ui/arrow_up.png"
+        },
+        {
+          "index": 11,
+          "name": "arrow_down",
+          "file": "assets/sprites/ui/arrow_down.png"
+        },
+        {
+          "index": 12,
+          "name": "arrow_left",
+          "file": "assets/sprites/ui/arrow_left.png"
+        },
+        {
+          "index": 13,
+          "name": "arrow_right",
+          "file": "assets/sprites/ui/arrow_right.png"
+        },
+        {
+          "index": 14,
+          "name": "warning_tri",
+          "file": "assets/sprites/ui/warning_tri.png"
+        },
+        {
+          "index": 15,
+          "name": "biohazard",
+          "file": "assets/sprites/ui/biohazard.png"
+        }
+      ]
+    },
+    "portraits": {
+      "sheet": "assets/spritesheets/portraits_sheet.png",
+      "pyxel": "assets/pixeledit/portraits.pyxel",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frames": [
+        {
+          "index": 0,
+          "name": "portrait_p1",
+          "file": "assets/sprites/ui/portrait_p1.png"
+        },
+        {
+          "index": 1,
+          "name": "portrait_p2",
+          "file": "assets/sprites/ui/portrait_p2.png"
+        }
+      ]
+    },
+    "geiger_plate": {
+      "file": "assets/sprites/ui/geiger_plate.png",
+      "width": 96,
+      "height": 64
+    },
+    "bg_pripyat_sky": {
+      "file": "assets/spritesheets/bg_pripyat_sky.png",
+      "width": 640,
+      "height": 360
+    },
+    "gameover_banner": {
+      "file": "assets/spritesheets/gameover_chernobyl.png",
+      "width": 320,
+      "height": 140
+    },
+    "victory_banner": {
+      "file": "assets/spritesheets/victory_chernobyl.png",
+      "width": 320,
+      "height": 140
+    },
+    "cover": {
+      "file": "assets/spritesheets/portada_chernobyl86.png",
+      "width": 640,
+      "height": 360
+    }
+  }
+}
