@@ -35,12 +35,7 @@ Se recomienda usar **Google Chrome** o **Microsoft Edge** sobre **HTTPS** (Netli
 - **Archivos editables PixelEdit (`assets/pixeledit/`):**
   - `liquidador_p1.pyxel`, `liquidador_p2.pyxel`, `hazards_objects.pyxel`, `escenario_nivel1.pyxel`, `escenario_nivel2.pyxel` y `sprites_manifest.json`.
 
----
 
-## Publicación en Netlify (3 pasos)
-1. Ingresa a [app.netlify.com](https://app.netlify.com) e inicia sesión.
-2. Selecciona **Add new site → Deploy manually**.
-3. Arrastra toda esta carpeta (`Project`) al recuadro de carga. En segundos tendrás tu URL con **HTTPS** habilitado y permisos de micrófono listos gracias a `netlify.toml`.
 
 ---
 
