@@ -110,9 +110,6 @@ Project/
 │   ├── audio.js                # Sintetizador Web Audio (Geiger, agua, escudo, válvulas, alarmas y música)
 │   ├── particles.js            # Motor de efectos: partículas, vapor, chorro de agua, ondas y sacudida
 │   └── sprites.js              # Precarga y dibujado nítido de SpriteSheets sin suavizado (pixelated)
-├── tools/
-│   ├── generate_assets.mjs     # Generador determinista de PNGs, SpriteSheets y archivos .pyxel (Node.js)
-│   └── dev_server.mjs          # Servidor estático local para pruebas (http://127.0.0.1:4173)
 ├── assets/
 │   ├── spritesheets/           # 11 SpriteSheets/ilustraciones (portada, P1, P2, peligros, tiles, UI, banners)
 │   ├── sprites/                # Sprites individuales separados en p1/, p2/, hazards/, level1/, level2/, ui/
@@ -125,7 +122,7 @@ Project/
 ```
 
 ### 7.2. Diseño Artístico, Sprites, SpriteSheets y PixelEdit
-Todos los gráficos del juego fueron generados de forma determinista mediante `tools/generate_assets.mjs` (sin dependencias externas, implementando codificación PNG con `zlib.deflateSync` y empaquetado ZIP válido para archivos `.pyxel` de Pyxel Edit):
+Todos los gráficos del juego se crearon como activos pixel art originales (PNG sin pérdida y paquetes ZIP válidos `.pyxel` compatibles con Pyxel Edit), organizados en `assets/`:
 
 * **Personajes (`32x32` px por frame, escala entera 3x en tablero → `96x96` px):**
   * `liquidador_p1_sheet.png` (`160x32`, 5 fotogramas: `idle_1`, `idle_2`, `walk_1`, `action_water`, `shield`) — Traje protector amarillo.
@@ -217,7 +214,7 @@ El proceso de desarrollo siguió el enfoque de **William Edwards Deming** (1986)
 
 ### 8.1. Principios de Deming Aplicados
 1. **Crear constancia en el propósito hacia la mejora del producto:** Cada iteración se enfocó en acercar el videojuego al objetivo real (impacto histórico + confiabilidad en voz + coherencia visual Chernóbil).
-2. **Adoptar la nueva filosofía y eliminar la dependencia de la inspección masiva tardía:** Se construyó verificación automática desde el inicio (firmas binarias PNG/ZIP en `generate_assets.mjs`, `node --check`, pruebas simuladas de voz y pruebas automatizadas de extremo a extremo en navegador a `1280x720`).
+2. **Adoptar la nueva filosofía y eliminar la dependencia de la inspección masiva tardía:** Se construyó verificación automática desde el inicio (verificación de firmas binarias PNG/ZIP de los activos, `node --check`, pruebas simuladas de voz y pruebas automatizadas de extremo a extremo en navegador a `1280x720`).
 3. **Mejorar continuamente el sistema de producción y servicio:** No se cerró el proyecto en la primera versión funcional; se refinó la estética, la ergonomía y la respuesta vocal tras cada prueba real con usuario.
 4. **Instituir la capacitación y claridad para el usuario:** Se integró un calibrador de micrófono en portada y una guía gráfica de controles antes de iniciar cada nivel para reducir a cero la curva de aprendizaje.
 5. **Derribar barreras entre componentes (coherencia sistémica):** Se unificó la estética entre UI HTML/CSS, gráficos del `<canvas>`, audio y sprites pixel art en una sola terminal CRT soviética coherente.

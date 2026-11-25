@@ -19,25 +19,6 @@ Se recomienda usar **Google Chrome** o **Microsoft Edge** sobre **HTTPS** (Netli
 
 ---
 
-## Inventario de Entregables
-
-- **Código fuente editable del juego:**
-  - `index.html`, `styles.css`, `netlify.toml`
-  - `src/config.js`, `src/sprites.js`, `src/audio.js`, `src/particles.js`, `src/voice.js`, `src/game.js`, `src/ui.js`, `src/main.js`
-  - `tools/generate_assets.mjs` (generador determinista de sprites, spritesheets y archivos `.pyxel`)
-- **SpriteSheets (`assets/spritesheets/`):**
-  - `portada_chernobyl86.png` (`640x360`)
-  - `liquidador_p1_sheet.png`, `liquidador_p2_sheet.png` (`160x32`, 5 frames c/u)
-  - `hazards_sheet.png` (`192x32`, 6 frames)
-  - `tiles_level1_sheet.png`, `tiles_level2_sheet.png` (`128x32`, 4 tiles c/u)
-- **Sprites individuales (`assets/sprites/`):**
-  - Carpetas `p1/`, `p2/`, `hazards/`, `level1/`, `level2/` con cada fotograma exportado en PNG.
-- **Archivos editables PixelEdit (`assets/pixeledit/`):**
-  - `liquidador_p1.pyxel`, `liquidador_p2.pyxel`, `hazards_objects.pyxel`, `escenario_nivel1.pyxel`, `escenario_nivel2.pyxel` y `sprites_manifest.json`.
-
-
-
----
 
 ## Calidad Total Aplicada — William Edwards Deming (Ciclo PHVA)
 1. **Planificar (Plan):** Definición del alcance histórico, turnos de relevo de 22s justificados por los liquidadores reales y diccionario fonético tolerante en español.

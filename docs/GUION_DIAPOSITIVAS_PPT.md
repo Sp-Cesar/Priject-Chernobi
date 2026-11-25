@@ -90,7 +90,7 @@
 * **Título:** DESARROLLO I — DISEÑO VISUAL, SPRITES Y PIXELEDIT
 * **Texto en lámina:**
   * **Estética Unificada:** Terminal CRT soviética de acero oxidado remachado, fósforo verde y dosímetro Geiger analógico.
-  * **Pipeline Determinista (`tools/generate_assets.mjs`):**
+  * **Activos Pixel Art y Editables (`assets/`):**
     * **11 SpriteSheets** (`portada`, `liquidador_p1`, `liquidador_p2`, `hazards`, `tiles_level1`, `tiles_level2`, `ui_8bit`, `portraits`, `bg_pripyat_sky`, `gameover`, `victory`).
     * **Sprites individuales** organizados en `assets/sprites/`.
     * **7 archivos editables PixelEdit (`.pyxel`)** + `sprites_manifest.json` en `assets/pixeledit/`.
